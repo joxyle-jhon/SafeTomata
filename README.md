@@ -25,8 +25,12 @@ npm init -y
 npm install express cors
 
 ```
+### 4. Test Using Postman
 
-### 4. Start the Server
+- Open Postman (download it if you don't have it: [Download Postman](https://www.postman.com/downloads/)).
+- Create a new POST request to `http://localhost:3000/login` with the appropriate `username` and `password` parameters.
+
+### 5. Start the Server
 ```bash
 node server.js
 
