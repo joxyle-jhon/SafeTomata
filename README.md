@@ -1,13 +1,6 @@
 # Simple Web Security App
 
 This project demonstrates a simple web application that includes features like brute force protection, SQL injection prevention, and XSS mitigation.
-
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Dependencies](#dependencies)
-- [Testing](#testing)
   
 ## Installation
 
