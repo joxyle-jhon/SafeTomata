@@ -35,6 +35,16 @@ npm install express cors
 node server.js
 
 ```
+### 6. Error Occur express-rate-limit [MODULE NOT FOUND] 
+```bash
+npm install express-rate-limit
+
+```
+### 7. Error Occur node-cache [MODULE NOT FOUND] 
+```bash
+npm install node-cache
+
+```
 
 ### Others
 ```bash
