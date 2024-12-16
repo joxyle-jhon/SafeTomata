@@ -1,0 +1,6 @@
+[2024-12-16T03:23:42.284Z] [SQLi/XSS] [IP: ::1] - Potential malicious input detected
+[2024-12-16T03:24:00.321Z] [SQLi/XSS] [IP: ::1] - Potential malicious input detected
+[2024-12-16T03:24:07.757Z] [SQLi/XSS] [IP: ::1] - Potential malicious input detected
+[2024-12-16T03:24:19.879Z] [SQLi/XSS] [IP: ::1] - Potential malicious input detected
+[2024-12-16T03:38:17.007Z] [XSS] [IP: ::1] - <script>alert('XSS')</script>
+[2024-12-16T03:40:22.395Z] [XSS/SQLi] [IP: ::1] - <script>alert('XSS')</script> - dasda

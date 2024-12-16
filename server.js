@@ -1,3 +1,24 @@
+const fs = require('fs');
+const path = require('path');
+
+// Define the path to the log file
+const logFilePath = path.join(__dirname, 'maliciousAttempts.log');
+
+// Function to log the details of malicious attempts (SQLi or XSS)
+function logAttempt(type, inputDetails, ip) {
+  const timestamp = new Date().toISOString();
+  const logMessage = `[${timestamp}] [${type}] [IP: ${ip}] - ${inputDetails}\n`;
+
+  // Append the log message to the log file
+  fs.appendFile(logFilePath, logMessage, (err) => {
+    if (err) {
+      console.error('Error writing to log file:', err);
+    }
+  });
+}
+
+module.exports = logAttempt;
+
 const express = require("express");
 const rateLimit = require("express-rate-limit");
 const cache = require("node-cache");
@@ -11,7 +32,7 @@ const loginAttemptsCache = new cache({ stdTTL: 3600, checkperiod: 600 });
 // Rate Limiter to prevent brute force attacks
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // limit each IP to 5 requests per windows
+  max: 5, // limit each IP to 5 requests per window
   message: { message: "Too many requests, please try again later." },
   headers: true,
 });
@@ -20,18 +41,20 @@ const limiter = rateLimit({
 app.use("/login", limiter);
 
 // FSM logic for SQLi and XSS validation
-function validateInput(input) {
+function validateInput(input, ip) {
   let state = "initial"; // Initial state
 
-  // Transition from 'initial' state based on SQLi pattern
+  // Check for SQLi pattern
   if (checkSQLi(input)) {
     state = "rejected"; // Transition to rejected state on SQLi
+    logAttempt("SQLi", input, ip); // Log the SQLi attempt
     return state;
   }
 
-  // Transition from 'initial' state based on XSS pattern
+  // Check for XSS pattern
   if (checkXSS(input)) {
     state = "rejected"; // Transition to rejected state on XSS
+    logAttempt("XSS", input, ip); // Log the XSS attempt
     return state;
   }
 
@@ -56,6 +79,7 @@ function checkXSS(input) {
 // Login route with FSM-based validation, brute force protection, and anomaly detection
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
+  const ip = req.ip;
 
   // Simple validation
   if (!username || !password) {
@@ -65,8 +89,8 @@ app.post("/login", (req, res) => {
   }
 
   // FSM Validation for SQL Injection and XSS
-  let usernameState = validateInput(username);
-  let passwordState = validateInput(password);
+  let usernameState = validateInput(username, ip);
+  let passwordState = validateInput(password, ip);
 
   if (usernameState === "rejected" || passwordState === "rejected") {
     return res
@@ -77,7 +101,6 @@ app.post("/login", (req, res) => {
   }
 
   // Check for failed login attempts from the same IP (brute force protection)
-  const ip = req.ip;
   let attempts = loginAttemptsCache.get(ip) || 0;
 
   if (attempts >= 3) {
@@ -106,6 +129,3 @@ const port = 3000;
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-
-
-

@@ -1,0 +1,19 @@
+{
+  "name": "simple-web-security",
+  "version": "1.0.0",
+  "description": "<<<<<<< HEAD\r # Simple Web Security App",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.4.1",
+    "node-cache": "^5.1.2"
+  }
+}

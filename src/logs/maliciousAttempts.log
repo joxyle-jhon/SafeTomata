@@ -1,7 +1,0 @@
-[2024-12-16T03:03:07.946Z] [XSS] [IP: undefined] - <script>alert('XSS')</script>
-[2024-12-16T03:03:11.838Z] [XSS] [IP: undefined] - <script>alert('XSS')</script>
-[2024-12-16T03:05:53.835Z] [SQLi/XSS] [IP: ::1] - Username: <script>alert('XSS')</script>, Password: sadada
-[2024-12-16T03:05:55.081Z] [SQLi/XSS] [IP: ::1] - Username: <script>alert('XSS')</script>, Password: sadada
-[2024-12-16T03:05:55.277Z] [SQLi/XSS] [IP: ::1] - Username: <script>alert('XSS')</script>, Password: sadada
-[2024-12-16T03:07:48.887Z] [SQLi/XSS] [IP: ::1] - Username: <script>alert('XSS')</script>, Password: sdsa
-[2024-12-16T03:07:50.894Z] [SQLi/XSS] [IP: ::1] - Username: <script>alert('XSS')</script>, Password: sdsa
