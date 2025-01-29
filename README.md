@@ -1,5 +1,5 @@
 
-# Simple Web Security App
+# Simple Web Security Application
 
 This project demonstrates a simple web application that includes features like brute force protection, SQL injection prevention, and XSS mitigation. It showcases best practices in securing web applications using Node.js and Express, with middleware for request validation, rate limiting, and logging malicious attempts.
 
